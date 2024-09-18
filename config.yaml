@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  -  name: Installing latest python3 and pip3
+     apt:
+       name: python3-pip
+
+  -  name: Installing Java open-jdk
+     apt:
+       name: default-jre
+     apt:
+       name: openjdk-11-jre-headless
+     apt:
+       name: openjdk-8-jre-headless
+ 
+  -  name: Installing MariaDB
+     apt:
+       name: mariadb-server
+
+
