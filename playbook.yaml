@@ -2,7 +2,40 @@
 - hosts: all
   become: true
   tasks:
+  -  name: Installing latest python3
+     apt:
+       name: python3
+       state: latest
 
-  - name: Installing latest python3 and pip3
-    apt:
-      name: python3-pip 
+  -  name: Installing latest pip3
+     apt:
+       name: python3-pip
+       state: latest
+
+  -  name: Installing Java open-jdk
+     apt:
+       name: default-jre
+       state: latest
+     apt:
+       name: openjdk-11-jre-headless
+       state: latest
+     apt:
+       name: openjdk-8-jre-headless
+       state: latest
+
+  -  name: Installing MariaDB
+     apt:
+       name: mariadb-server
+       state: latest
+
+  -  name: Creating Motd
+     copy:
+       content: Ansible Managed node by avalencia
+       dest: /etc/motd
+
+  -  name: Creating a user
+     user:
+       name: PrelimExamUser
+       state: present
+       shell: /bin/bash
+       createhome: yes
